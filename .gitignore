@@ -1,0 +1,10 @@
+# 所有class后缀的文件
+*.class
+# 所有jar后缀的文件
+*.jar
+*.iml
+*.war
+# .idea 文件夹
+.idea
+# 所有.txt 文件
+*.txt

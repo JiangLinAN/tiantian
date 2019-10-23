@@ -2,15 +2,16 @@ package com.nore;
 
 import static org.junit.Assert.assertTrue;
 
+import com.nore.dao.GoodDAO;
+import com.nore.dao.GoodTypeDAO;
+import com.nore.pojo.Good;
+import com.nore.pojo.GoodType;
 import com.nore.pojo.User;
+import com.nore.service.GoodTypeService;
 import com.nore.service.UserService;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -24,8 +25,33 @@ import java.util.List;
 public class AppTest {
     @Autowired
     private UserService userService;
+    @Autowired
+    private GoodTypeDAO goodTypeDAO;
+    @Autowired
+    private GoodDAO goodDAO;
+    @Autowired
+    private GoodTypeService goodTypeService;
+
     @Test
-    public void testfindAll(){
+    public void testGoodsDAO() {
+        List<Good> goodsByTypeId = goodDAO.findGoodsByTypeId(1);
+        for (Good good : goodsByTypeId) {
+            System.out.println(good);
+        }
+    }
+
+
+    //service
+    @Test
+    public void testGoodTypeService() {
+        GoodType goodTypeAndGoods = goodTypeService.findGoodTypeAndGoods(1);
+        System.out.println(goodTypeAndGoods);
+    }
+
+    //DAO
+
+    @Test
+    public void testfindAll() {
         List<User> allUsers = userService.findAllUsers();
         for (User allUser : allUsers) {
             System.out.println(allUser);
@@ -33,8 +59,8 @@ public class AppTest {
     }
 
     @Test
-    public void testShiroInsertUser(){
-        User user=new User();
+    public void testShiroInsertUser() {
+        User user = new User();
         user.setUsername("蒋林安");
         user.setPassword("2090");
         user.setMail("1606573256@qq.com");
@@ -43,4 +69,5 @@ public class AppTest {
         System.out.println(integer);
         System.out.println(user);
     }
+
 }

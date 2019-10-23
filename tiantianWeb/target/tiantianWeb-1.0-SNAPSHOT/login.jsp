@@ -11,12 +11,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <title>天天生鲜-登录</title>
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
 </head>
 <body>
 <div class="login_top clearfix">
-    <a href="index.html" class="login_logo"><img src="images/logo02.png"></a>
+    <a href="index.html" class="login_logo"><img src="${pageContext.request.contextPath}/images/logo02.png"></a>
 </div>
 
 <div class="login_form_bg">
@@ -37,15 +37,14 @@
                 <div style="position: absolute;left: 0;top: 120px;">
                     <img id="cap" src="${pageContext.request.contextPath}/captcha"
                          style="width: 150px;height: 25px">
-                    <input onblur="checkcap(this)"
-                           style="background: #fdfdfd;height: 25px;width: 150px;vertical-align: middle;">
+                    <input id="code" onblur="checkCap()" style="background: #fdfdfd;height: 25px;width: 150px;vertical-align: middle;">
                 </div>
                 <div class="more_input clearfix">
                     <input type="checkbox" name="">
                     <label>记住用户名</label>
                     <a href="#">忘记密码</a>
                 </div>
-                <input type="button" name="" value="登录" class="input_submit" onclick="loginuser()">
+                <input type="button" name="" value="登录" class="input_submit" onclick="loginUser()">
 
             </div>
         </div>
@@ -76,25 +75,52 @@
         });
     });
 
-    function loginuser() {
+    var codeCount=1;
+    function checkCap() {
         $.ajax({
-            type: 'post',
-            url: "http://localhost:8080/tiantianWeb_war_exploded/user/login",
-            contentType: 'application/json',
-            data: JSON.stringify({
-                "username": $("#username").val(),
-                "password": $("#password").val()
+            type:"post",
+            url:"http://localhost:8080/tiantianWeb_war_exploded/user/checkCode",
+            contentType:"application/Json",
+            data:JSON.stringify({
+                "code=":$("#code").val()
             }),
-            success: function (status) {
-                alert(status.msg)
-                if (status.msg=="登录成功"){
-                    location.href="http://localhost:8080/tiantianWeb_war_exploded/index.jsp"
+            success: function (R) {
+                alert(R.msg)
+                if (R.msg=="验证码ok"){
+                    codeCount=0;
+                    console.log(codeCount)
                 }
             },
             error: function () {
-                alert("登录错误")
+                alert("验证码错误")
             }
         })
+    }
+
+    function loginUser() {
+        console.log("login  "+codeCount)
+        if (codeCount==0){
+            $.ajax({
+                type: 'post',
+                url: "http://localhost:8080/tiantianWeb_war_exploded/user/login",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    "username": $("#username").val(),
+                    "password": $("#password").val()
+                }),
+                success: function (status) {
+                    alert(status.msg)
+                    if (status.msg=="登录成功"){
+                        location.href="http://localhost:8080/tiantianWeb_war_exploded/index.jsp"
+                    }
+                },
+                error: function () {
+                    alert("登录错误")
+                }
+            })
+        }else {
+            alert("请输入正确的验证码")
+        }
     }
 
 </script>

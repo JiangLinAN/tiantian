@@ -2,7 +2,9 @@ package com.nore;
 
 import static org.junit.Assert.assertTrue;
 
+import com.nore.dao.GoodTypeDAO;
 import com.nore.dao.UserDAO;
+import com.nore.pojo.GoodType;
 import com.nore.pojo.User;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -32,4 +34,5 @@ public class AppTest {
          System.out.println(allUser);
       }
    }
+
 }
