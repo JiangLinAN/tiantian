@@ -56,7 +56,7 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!--声明验证码组件-->
+    <!--声明验证码组件,从Session中去值captcha-->
     <servlet>
         <servlet-name>cap</servlet-name>
         <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
@@ -85,4 +85,5 @@
         <servlet-name>cap</servlet-name>
         <url-pattern>/captcha</url-pattern>
     </servlet-mapping>
+
 </web-app>

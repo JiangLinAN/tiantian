@@ -9,5 +9,9 @@ import java.util.List;
  * @Author:nore
  */
 public interface GoodDAO {
-    List<Good> findGoodsByTypeId(@Param("id") Integer id);
+    List<Good> findAllGoodsOrderBy(@Param("id") Integer id);
+
+    List<Good> findAllGoods(Integer typeId);
+
+    Good findGoodById(@Param("goodId") Integer goodId);
 }

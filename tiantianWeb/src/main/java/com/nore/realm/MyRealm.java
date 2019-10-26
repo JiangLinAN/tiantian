@@ -58,26 +58,17 @@ public class MyRealm  extends AuthorizingRealm {
         String userString=(String)token.getPrincipal();
         //2.查询用户的信息
         User userName = userService.queryUserByUsername(userString);
-        User userMail = userService.queryUserByMail(userString);
         System.out.println("realm::"+userName);
         //3.判断用户名是否为空
-        if (userName==null&&userMail==null){
+        if (userName==null){
             return null;
         }
-
         //密码比较
-        if (userName==null){
-            return new SimpleAuthenticationInfo(
-                    userMail.getUsername(),//邮箱
-                    userMail.getPassword(),//密码
-                    ByteSource.Util.bytes(userMail.getSalt()),//盐
-                    this.getName());
-        }else {
             return new SimpleAuthenticationInfo(
                     userName.getUsername(),
                     userName.getPassword(),
                     ByteSource.Util.bytes(userName.getSalt()),
                     this.getName());
-        }
+
     }
 }

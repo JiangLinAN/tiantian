@@ -3,6 +3,7 @@ package com.nore.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -29,6 +30,7 @@ public class Good {
     private String simg;
     private String bimg;
     private BigDecimal price;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date time;
     private String mark;
 }

@@ -1,11 +1,9 @@
 package com.nore;
 
-import static org.junit.Assert.assertTrue;
 
 import com.nore.dao.GoodDAO;
 import com.nore.dao.GoodTypeDAO;
-import com.nore.pojo.Good;
-import com.nore.pojo.GoodType;
+
 import com.nore.pojo.User;
 import com.nore.service.GoodTypeService;
 import com.nore.service.UserService;
@@ -32,21 +30,9 @@ public class AppTest {
     @Autowired
     private GoodTypeService goodTypeService;
 
-    @Test
-    public void testGoodsDAO() {
-        List<Good> goodsByTypeId = goodDAO.findGoodsByTypeId(1);
-        for (Good good : goodsByTypeId) {
-            System.out.println(good);
-        }
-    }
 
 
-    //service
-    @Test
-    public void testGoodTypeService() {
-        GoodType goodTypeAndGoods = goodTypeService.findGoodTypeAndGoods(1);
-        System.out.println(goodTypeAndGoods);
-    }
+
 
     //DAO
 

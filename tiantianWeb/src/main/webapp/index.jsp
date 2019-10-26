@@ -18,64 +18,7 @@
     <script type="text/javascript" src="js/slide.js"></script>
 </head>
 <body>
-<div class="header_con">
-    <div class="header">
-        <div class="welcome fl">欢迎来到天天生鲜!
-            <shiro:user>
-                <shiro:principal/>
-            </shiro:user>
-        </div>
-        <div class="fr">
-
-            <div class="login_btn fl">
-                <shiro:guest>
-                <a href="login.jsp">登录</a>
-                <span>|</span>
-                <a href="register.jsp">注册</a>
-                </shiro:guest>
-                <shiro:user>
-                    <a href="${pageContext.request.contextPath}/user/logout">注销</a>
-                </shiro:user>
-            </div>
-
-
-            <div class="user_link fl">
-                <span>|</span>
-                <a href="user_center_info.html">用户中心</a>
-                <span>|</span>
-                <a href="cart.html">我的购物车</a>
-                <span>|</span>
-                <a href="user_center_order.html">我的订单</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="search_bar clearfix">
-    <a href="index.html" class="logo fl"><img src="images/logo.png"></a>
-    <div class="search_con fl">
-        <input type="text" class="input_text fl" name="" placeholder="搜索商品">
-        <input type="button" class="input_btn fr" name="" value="搜索">
-    </div>
-    <div class="guest_cart fr">
-        <a href="#" class="cart_name fl">我的购物车</a>
-        <div class="goods_count fl" id="show_count">1</div>
-    </div>
-</div>
-
-<div class="navbar_con">
-    <div class="navbar">
-        <h1 class="fl">全部商品分类</h1>
-        <ul class="navlist fl">
-            <li><a href="">首页</a></li>
-            <li class="interval">|</li>
-            <li><a href="">手机生鲜</a></li>
-            <li class="interval">|</li>
-            <li><a href="">抽奖</a></li>
-        </ul>
-    </div>
-</div>
-
+<jsp:include page="indexTop.jsp"/>
 <div class="center_con clearfix">
     <div id="type01"></div>
     <script>
@@ -105,20 +48,8 @@
     $("#typeGoods02").load("${pageContext.request.contextPath}/index/typeGoods?typeId=2");
 </script>
 
-<div class="footer">
-    <div class="foot_link">
-        <a href="#">关于我们</a>
-        <span>|</span>
-        <a href="#">联系我们</a>
-        <span>|</span>
-        <a href="#">招聘人才</a>
-        <span>|</span>
-        <a href="#">友情链接</a>
-    </div>
-    <p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
-    <p>电话：010-****888 京ICP备*******8号</p>
-</div>
-<script type="text/javascript" src="js/slideshow.js"></script>
+<jsp:include page="indexLow.jsp"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/slideshow.js"></script>
 <script type="text/javascript">
     BCSlideshow('focuspic');
     var oFruit = document.getElementById('fruit_more');
@@ -133,6 +64,7 @@
     oFruit.onclick = function () {
         window.location.href = 'list.html';
     }
+
 </script>
 </body>
 </html>

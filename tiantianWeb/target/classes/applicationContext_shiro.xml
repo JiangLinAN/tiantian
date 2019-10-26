@@ -17,7 +17,7 @@
                 <property name="hashAlgorithmName" value="SHA-256"/>
                 <!--加盐迭代次数-->
                 <property name="hashIterations" value="10000"/>
- <property name="storedCredentialsHexEncoded" value="false"/>
+                <property name="storedCredentialsHexEncoded" value="false"/>
             </bean>
         </property>
     </bean>

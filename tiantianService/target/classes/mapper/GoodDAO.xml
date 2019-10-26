@@ -5,14 +5,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.nore.dao.GoodDAO">
-
-    <select id="findGoodsByTypeId" resultType="com.nore.pojo.Good">
-        select t_goods.id,t_goods.goodname,t_goods.simg,t_goods.bimg,t_goods.price,t_goods.time,t_goods.mark
+    <sql id="abc">
+    select t_goods.id,t_goods.goodname,t_goods.simg,t_goods.bimg,t_goods.price,t_goods.time,t_goods.mark
         from t_type
         JOIN type_goods ON t_type.id = type_goods.typeid
         JOIN t_goods on t_goods.id = type_goods.goodid
         WHERE t_type.id=#{id}
-        order by 'time'
+    </sql>
+
+    <select id="findAllGoodsOrderBy" resultType="com.nore.pojo.Good">
+        <include refid="abc"></include>
         limit 0,4
     </select>
+
+    <select id="findAllGoods" resultType="com.nore.pojo.Good">
+        <include refid="abc"></include>
+    </select>
+    <select id="findGoodById" resultType="com.nore.pojo.Good">
+        select * from tiantiansql.t_goods where id=#{goodId};
+    </select>
+
 </mapper>

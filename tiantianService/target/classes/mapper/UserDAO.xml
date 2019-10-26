@@ -5,21 +5,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nore.dao.UserDAO">
 
-    <select id="findAllUsers" resultType="com.nore.pojo.User">
+    <select id="findAllUsers" resultType="User">
         select id,username,password,mail,salt,registerTime
         from t_user
     </select>
 
-    <insert id="insertUser" parameterType="com.nore.pojo.User">
+    <insert id="insertUser" parameterType="User">
         insert into t_user(username,password,mail,salt,registerTime)
         values(#{username},#{password},#{mail},#{salt},#{registerTime})
     </insert>
-    <select id="queryUserByUsername" resultType="com.nore.pojo.User">
+    <select id="queryUserByUsername" resultType="User">
         select id,username,password,mail,salt,registerTime
         from t_user
         where username=#{username}
     </select>
-    <select id="queryUserByMail" resultType="com.nore.pojo.User">
+    <select id="queryUserByMail" resultType="User">
         select id,username,password,mail,salt,registerTime
         from t_user
         where username=#{mail}

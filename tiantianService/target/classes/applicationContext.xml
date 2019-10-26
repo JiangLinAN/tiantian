@@ -52,6 +52,12 @@
                 <value>classpath:mapper/*.xml</value>
             </array>
         </property>
+        <!--插件-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor"></bean>
+            </array>
+        </property>
         <!-- 别名 -->
         <property name="typeAliasesPackage" value="com.nore.pojo"/>
     </bean>
@@ -63,7 +69,6 @@
         <!-- SqlSessionFactory -->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
-
 
     <!-- 如下service相关配置 -->
     <!-- 配置注解扫描 -->

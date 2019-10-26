@@ -7,6 +7,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.crypto.hash.Hash;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,12 +32,14 @@ public class MyExceptionResolver implements HandlerExceptionResolver {
         evMapping.put(UnknownAccountException.class,"json:用户名或密码错误~~~~");
         evMapping.put(AuthenticationException.class,"json:AuthenticationException异常");
     }
+
+
+
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         ModelAndView mv = new ModelAndView();
         // 开发时必备的
-        System.out.println("异常解析器");
-//        ex.printStackTrace();
+       ex.printStackTrace();
         String view = evMapping.get(ex.getClass());
 
         System.out.println(ex.getClass());

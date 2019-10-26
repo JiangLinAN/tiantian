@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <ul class="subnav fl">
-    <c:forEach var="type" items="${sessionScope.types}" varStatus="count">
+    <c:forEach var="type" items="${requestScope.types}" varStatus="count">
         <li><a href="#model0${count.index+1}" class="${type.simg}">${type.typeName}</a></li>
     </c:forEach>
 </ul>

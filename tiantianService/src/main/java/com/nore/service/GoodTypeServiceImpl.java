@@ -15,7 +15,6 @@ import java.util.List;
  */
 @Service
 public class GoodTypeServiceImpl implements GoodTypeService {
-
     @Autowired
     private GoodDAO goodDAO;
     @Autowired
@@ -26,9 +25,17 @@ public class GoodTypeServiceImpl implements GoodTypeService {
     }
 
     @Override
-    public GoodType findGoodTypeAndGoods(Integer typeId) {
-        List<Good> goods = goodDAO.findGoodsByTypeId(typeId);
-        GoodType goodType= goodTypeDAO.findTypeById(typeId);
+    public GoodType findGoodsOrderBy(Integer typeid) {
+        List<Good> goods = goodDAO.findAllGoodsOrderBy(typeid);
+        GoodType goodType = goodTypeDAO.findTypeById(typeid);
+        goodType.setGoods(goods);
+        return goodType;
+    }
+
+    @Override
+    public GoodType findAllGoods(Integer typeId) {
+        List<Good> goods = goodDAO.findAllGoods(typeId);
+        GoodType goodType = goodTypeDAO.findTypeById(typeId);
         goodType.setGoods(goods);
         return goodType;
     }
